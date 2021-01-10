@@ -1,0 +1,4 @@
+[submodule "marlin"]
+	path = marlin
+	url = git@github.com:MarlinFirmware/Marlin.git
+	ignore = dirty
