@@ -18,8 +18,8 @@ cp marlin-configurations/config/examples/Creality/Ender-3\ Pro/BigTreeTech\ SKR\
 echo "---------------"
 echo "Cleaning build folder"
 echo "---------------"
-platformio run --project-dir marlin --environment STM32F103RC_btt_512K -t clean
+platformio run --project-dir marlin --environment STM32F103RC_btt -t clean
 echo "---------------"
 echo "Starting build"
 echo "---------------"
-platformio run --project-dir marlin --environment STM32F103RC_btt_512K
+platformio run --project-dir marlin --environment STM32F103RC_btt
