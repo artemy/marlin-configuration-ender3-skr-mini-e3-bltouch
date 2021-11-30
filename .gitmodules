@@ -2,3 +2,7 @@
 	path = marlin
 	url = git@github.com:MarlinFirmware/Marlin.git
 	ignore = dirty
+[submodule "marlin-configurations"]
+	path = marlin-configurations
+	url = git@github.com:MarlinFirmware/Configurations.git
+	ignore = dirty
