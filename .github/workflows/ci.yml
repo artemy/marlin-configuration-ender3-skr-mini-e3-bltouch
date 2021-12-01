@@ -29,8 +29,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --upgrade platformio
-      - name: Trying to check git tag
-        run: git -C $MARLIN_DIR describe --tags
       - name: Build artifacts
         run: make
       - name: Create release
