@@ -155,3 +155,12 @@ index c57ed1349..0473f45bf 100644
    //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~‭3260 (or ~940) bytes of PROGMEM.
  
    // Frivolous Game Options
+@@ -3835,7 +3835,7 @@
+  * Host Prompt Support enables Marlin to use the host for user prompts so
+  * filament runout and other processes can be managed from the host side.
+  */
+-//#define HOST_ACTION_COMMANDS
++#define HOST_ACTION_COMMANDS
+ #if ENABLED(HOST_ACTION_COMMANDS)
+   //#define HOST_PAUSE_M76
+   //#define HOST_PROMPT_SUPPORT

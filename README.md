@@ -32,6 +32,7 @@ Most important changes introduced in this custom configuration:
       use [Octoprint](https://octoprint.org))
     - Enable progress display rotation (rotate between progress, elapsed and remaining time)
 - Show heating in a progress bar
+- Enable [HOST_ACTION_COMMANDS](https://community.octoprint.org/t/octoprint-tells-me-my-firmware-lacks-support-for-host-action-commands-what-does-this-mean/34588) (inform OctoPrint about start/stop/pause/etc. events)
 
 ## How does this work?
 
