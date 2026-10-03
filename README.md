@@ -18,7 +18,8 @@ Most important changes introduced in this custom configuration:
 - Enable 3D Touch probe
 - Disable Z-MIN Probe in favor of 3D Touch
 - Use 3D Touch probe for Z homing
-- Correct probe offsets for the used [mount](https://www.thingiverse.com/thing:3148733)
+- Correct probe offsets (X/Y and Z) for the used [mount](https://www.thingiverse.com/thing:3148733)
+- Mark sensorless-homing DIAG jumpers as removed (mechanical endstops are used)
 - Lower probe feedrate for reliability
 - Enable M48 probe repeatability command to test probe accuracy
 - Disable software endstop for Z probe (otherwise it's impossible to correctly set Probe Z-offset)
