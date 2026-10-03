@@ -1,0 +1,158 @@
+diff --git a/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration.h b/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration.h
+index ec04a78..4f3718c 100644
+--- a/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration.h	
++++ b/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration.h	
+@@ -1304,10 +1304,10 @@
+  * The probe replaces the Z-MIN endstop and is used for Z homing.
+  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
+  */
+-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
++//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+ 
+ // Force the use of the probe for Z-axis homing
+-//#define USE_PROBE_FOR_Z_HOMING
++#define USE_PROBE_FOR_Z_HOMING
+ 
+ /**
+  * Z_MIN_PROBE_PIN
+@@ -1361,7 +1361,7 @@
+ /**
+  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
+  */
+-//#define BLTOUCH
++#define BLTOUCH
+ 
+ /**
+  * MagLev V4 probe by MDD
+@@ -1513,14 +1513,14 @@
+  *     |    [-]    |
+  *     O-- FRONT --+
+  */
+-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
++#define NOZZLE_TO_PROBE_OFFSET { -44, -14, 0 }
+ 
+ // Most probes should stay away from the edges of the bed, but
+ // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
+ #define PROBING_MARGIN 10
+ 
+ // X and Y axis travel speed (mm/min) between probes
+-#define XY_PROBE_FEEDRATE (133*60)
++#define XY_PROBE_FEEDRATE (100*60)
+ 
+ // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
+ #define Z_PROBE_FEEDRATE_FAST (4*60)
+@@ -1602,7 +1602,7 @@
+ #define Z_PROBE_OFFSET_RANGE_MAX 20
+ 
+ // Enable the M48 repeatability test to test probe accuracy
+-//#define Z_MIN_PROBE_REPEATABILITY_TEST
++#define Z_MIN_PROBE_REPEATABILITY_TEST
+ 
+ // Before deploy/stow pause for user confirmation
+ //#define PAUSE_BEFORE_DEPLOY_STOW
+@@ -1763,7 +1763,7 @@
+ #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
+   #define MIN_SOFTWARE_ENDSTOP_X
+   #define MIN_SOFTWARE_ENDSTOP_Y
+-  #define MIN_SOFTWARE_ENDSTOP_Z
++  //#define MIN_SOFTWARE_ENDSTOP_Z
+   #define MIN_SOFTWARE_ENDSTOP_I
+   #define MIN_SOFTWARE_ENDSTOP_J
+   #define MIN_SOFTWARE_ENDSTOP_K
+@@ -1907,9 +1907,9 @@
+  */
+ //#define AUTO_BED_LEVELING_3POINT
+ //#define AUTO_BED_LEVELING_LINEAR
+-//#define AUTO_BED_LEVELING_BILINEAR
++#define AUTO_BED_LEVELING_BILINEAR
+ //#define AUTO_BED_LEVELING_UBL
+-#define MESH_BED_LEVELING
++//#define MESH_BED_LEVELING
+ 
+ /**
+  * Commands to execute at the end of G29 probing.
+@@ -1922,7 +1922,7 @@
+  * these options to restore the prior leveling state or to always enable
+  * leveling immediately after G28.
+  */
+-//#define RESTORE_LEVELING_AFTER_G28
++#define RESTORE_LEVELING_AFTER_G28
+ //#define ENABLE_LEVELING_AFTER_G28
+ 
+ /**
+@@ -1993,7 +1993,7 @@
+ #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
+ 
+   // Set the number of grid points per dimension.
+-  #define GRID_MAX_POINTS_X 5
++  #define GRID_MAX_POINTS_X 4
+   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+ 
+   // Probe along the Y axis, advancing X after each column
+@@ -2124,7 +2124,7 @@
+  * - Allows Z homing only when XY positions are known and trusted.
+  * - If stepper drivers sleep, XY homing may be required again before Z homing.
+  */
+-//#define Z_SAFE_HOMING
++#define Z_SAFE_HOMING
+ 
+ #if ENABLED(Z_SAFE_HOMING)
+   #define Z_SAFE_HOMING_X_POINT X_CENTER  // (mm) X point for Z homing
+diff --git a/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration_adv.h b/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration_adv.h
+index 7cf9c18..6beb2d5 100644
+--- a/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration_adv.h	
++++ b/config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/Configuration_adv.h	
+@@ -912,7 +912,7 @@
+ 
+   // Safety: The probe needs time to recognize the command.
+   //         Minimum command delay (ms). Enable and increase if needed.
+-  //#define BLTOUCH_DELAY 500
++  #define BLTOUCH_DELAY 500
+ 
+   /**
+    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
+@@ -1379,7 +1379,7 @@
+ //#define LCD_BACKLIGHT_TIMEOUT_MINS 1  // (minutes) Timeout before turning off the backlight
+ 
+ #if HAS_BED_PROBE && EITHER(HAS_MARLINUI_MENU, HAS_TFT_LVGL_UI)
+-  //#define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
++  #define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+   #if ENABLED(PROBE_OFFSET_WIZARD)
+     /**
+      * Enable to init the Probe Z-Offset when starting the Wizard.
+@@ -1490,7 +1490,7 @@
+ #define SET_PROGRESS_MANUALLY
+ #if ENABLED(SET_PROGRESS_MANUALLY)
+   #define SET_PROGRESS_PERCENT            // Add 'P' parameter to set percentage done
+-  //#define SET_REMAINING_TIME            // Add 'R' parameter to set remaining time
++  #define SET_REMAINING_TIME            // Add 'R' parameter to set remaining time
+   //#define SET_INTERACTION_TIME          // Add 'C' parameter to set time until next filament change or other user interaction
+   //#define M73_REPORT                    // Report M73 values to host
+   #if BOTH(M73_REPORT, SDSUPPORT)
+@@ -1502,7 +1502,7 @@
+ #if HAS_DISPLAY && EITHER(SDSUPPORT, SET_PROGRESS_MANUALLY)
+   #define SHOW_PROGRESS_PERCENT           // Show print progress percentage (doesn't affect progress bar)
+   #define SHOW_ELAPSED_TIME               // Display elapsed printing time (prefix 'E')
+-  //#define SHOW_REMAINING_TIME           // Display estimated time to completion (prefix 'R')
++  #define SHOW_REMAINING_TIME           // Display estimated time to completion (prefix 'R')
+   #if ENABLED(SET_INTERACTION_TIME)
+     #define SHOW_INTERACTION_TIME         // Display time until next user interaction ('C' = filament change)
+   #endif
+@@ -1844,7 +1844,7 @@
+   //#define STATUS_ALT_BED_BITMAP     // Use the alternative bed bitmap
+   //#define STATUS_ALT_FAN_BITMAP     // Use the alternative fan bitmap
+   //#define STATUS_FAN_FRAMES 3       // :[0,1,2,3,4] Number of fan animation frames
+-  //#define STATUS_HEAT_PERCENT       // Show heating in a progress bar
++  #define STATUS_HEAT_PERCENT       // Show heating in a progress bar
+   //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
+ 
+   // Frivolous Game Options
+@@ -3862,7 +3862,7 @@
+  * Host Prompt Support enables Marlin to use the host for user prompts so
+  * filament runout and other processes can be managed from the host side.
+  */
+-//#define HOST_ACTION_COMMANDS
++#define HOST_ACTION_COMMANDS
+ #if ENABLED(HOST_ACTION_COMMANDS)
+   //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
+   //#define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback

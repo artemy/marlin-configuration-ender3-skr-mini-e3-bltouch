@@ -1,8 +1,9 @@
 MARLIN_DIR=marlin
 MARLIN_CONFIG_DIR=marlin-configurations
 PLATFORMIO_ENV=STM32F103RC_btt
-LATEST_TAG=$$(git -C $(MARLIN_DIR) describe --tags `git -C $(MARLIN_DIR) rev-list --tags --max-count=1`)
-PATCH_FILE=ender-3-pro-skr-mini-e3-bltouch-$(LATEST_TAG).diff
+# Release tag of the commit checked out in the marlin submodule (e.g. 2.1.2.8)
+MARLIN_TAG=$$(git -C $(MARLIN_DIR) describe --tags --exact-match --match '[0-9]*')
+PATCH_FILE=ender-3-pro-skr-mini-e3-bltouch-$(MARLIN_TAG).diff
 
 .PHONY: clean build all
 .SILENT: clean patch build
@@ -10,9 +11,9 @@ PATCH_FILE=ender-3-pro-skr-mini-e3-bltouch-$(LATEST_TAG).diff
 all: clean patch build
 
 patch:
-	echo "Found latest tag" $(LATEST_TAG)
+	echo "Found Marlin tag" $(MARLIN_TAG)
 	echo "Applying" $(PATCH_FILE)
-	git -C $(MARLIN_CONFIG_DIR) apply --reject ../config/$(PATCH_FILE)
+	git -C $(MARLIN_CONFIG_DIR) apply --reject $(CURDIR)/config/$(PATCH_FILE)
 	echo "Replacing default configuration in Marlin directory"
 	cp $(MARLIN_CONFIG_DIR)/config/examples/Creality/Ender-3\ Pro/BigTreeTech\ SKR\ Mini\ E3\ 2.0/* $(MARLIN_DIR)/Marlin
 
