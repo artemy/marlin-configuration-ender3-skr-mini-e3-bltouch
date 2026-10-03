@@ -27,12 +27,15 @@ Most important changes introduced in this custom configuration:
 - Restores leveling after G28 (Auto Home) command
 - Smaller leveling grid (4x4 instead of default 5x5)
 - Z-safe homing (home Z in the middle of the bed)
+- Assisted tramming (`G35` and an LCD wizard): probes next to each bed screw and reports how far to turn it
 - Enable probe offset wizard (makes tuning probe z-offset much easier)
+- Babystepping also adjusts the probe Z offset (tune the first layer live, then `M500`), with a graphical overlay
 - Display estimated time to completion
     - Enable `M73 R` (set remaining time) so the host or slicer can supply the remaining time, since I
       use [Octoprint](https://octoprint.org)
     - The display rotates between progress, elapsed and remaining time
 - Show heating in a progress bar
+- Monitor TMC2209 driver status (reduce current before overheating, stop on driver errors)
 - Enable [HOST_ACTION_COMMANDS](https://community.octoprint.org/t/octoprint-tells-me-my-firmware-lacks-support-for-host-action-commands-what-does-this-mean/34588) (inform OctoPrint about start/stop/pause/etc. events)
 
 ## How does this work?
