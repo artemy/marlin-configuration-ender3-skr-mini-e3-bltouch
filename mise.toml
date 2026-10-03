@@ -1,0 +1,38 @@
+[tools]
+"pipx:platformio" = "6.2.0"
+
+[env]
+MARLIN_DIR = "marlin"
+MARLIN_CONFIG_DIR = "marlin-configurations"
+PLATFORMIO_ENV = "STM32F103RC_btt"
+EXAMPLE_CONFIG = "config/examples/Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0"
+
+[tasks.clean]
+description = "Reset submodules and clean the PlatformIO build folder"
+run = [
+  "git -C $MARLIN_DIR reset --hard",
+  "git -C $MARLIN_DIR clean -dfx",
+  "git -C $MARLIN_CONFIG_DIR reset --hard",
+  "git -C $MARLIN_CONFIG_DIR clean -df",
+  "platformio run --project-dir $MARLIN_DIR --environment $PLATFORMIO_ENV --target clean",
+]
+
+[tasks.patch]
+description = "Apply the patch matching the checked-out Marlin tag and copy the config into Marlin"
+depends = ["clean"]
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+# Release tag of the commit checked out in the marlin submodule (e.g. 2.1.2.8)
+tag=$(git -C "$MARLIN_DIR" describe --tags --exact-match --match '[0-9]*')
+patch_file="$PWD/config/ender-3-pro-skr-mini-e3-bltouch-$tag.diff"
+echo "Applying $patch_file"
+git -C "$MARLIN_CONFIG_DIR" apply --reject "$patch_file"
+echo "Replacing default configuration in Marlin directory"
+cp "$MARLIN_CONFIG_DIR/$EXAMPLE_CONFIG/"* "$MARLIN_DIR/Marlin"
+'''
+
+[tasks.build]
+description = "Clean, patch and build the firmware"
+depends = ["patch"]
+run = "platformio run --project-dir $MARLIN_DIR --environment $PLATFORMIO_ENV"

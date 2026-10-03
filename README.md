@@ -42,7 +42,13 @@ Most important changes introduced in this custom configuration:
 2. Example configuration is copied to [marlin](marlin) directory
 3. Firmware is built via [Platformio](https://platformio.org)
 
-Check [Makefile](Makefile) for more details
+Tasks are defined in [mise.toml](mise.toml); [mise](https://mise.jdx.dev) also installs the pinned PlatformIO version:
+
+```shell
+git submodule update --init
+mise install
+mise run build   # clean → patch → build; firmware in marlin/.pio/build/*/firmware.bin
+```
 
 ### Supported versions of Marlin
 
